@@ -8,7 +8,7 @@ export const planets = [
       aphelion: 69.818,
       inclination: 7.004,
       eccentricity: 0.2056,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 3,
     },
   },
   {
@@ -20,7 +20,7 @@ export const planets = [
       aphelion: 108.941,
       inclination: 3.395,
       eccentricity: 0.0068,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 7,
     },
   },
   {
@@ -32,7 +32,7 @@ export const planets = [
       aphelion: 152.1,
       inclination: 0,
       eccentricity: 0.0167,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 12,
     },
   },
   {
@@ -44,7 +44,7 @@ export const planets = [
       aphelion: 249.261,
       inclination: 0,
       eccentricity: 0.0935,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 23,
     },
   },
   {
@@ -56,7 +56,7 @@ export const planets = [
       aphelion: 816.363,
       inclination: 1.304,
       eccentricity: 0.0487,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 142,
     },
   },
   {
@@ -68,7 +68,7 @@ export const planets = [
       aphelion: 1506.527,
       inclination: 2.486,
       eccentricity: 0.052,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 354,
     },
   },
   {
@@ -80,7 +80,7 @@ export const planets = [
       aphelion: 3001.39,
       inclination: 0.77,
       eccentricity: 0.0469,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 1009,
     },
   },
   {
@@ -92,7 +92,7 @@ export const planets = [
       aphelion: 4558.857,
       inclination: 1.77,
       eccentricity: 0.0097,
-      orbitPeriod: 1,
+      orbitPeriod: 12 / 1979,
     },
   },
 ];
