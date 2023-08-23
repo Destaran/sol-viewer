@@ -26,27 +26,38 @@ import { Vector3 } from "three";
 
 export function Planet({ planet, camRef, lookAtPlanet, track }: PlanetProps) {
   const { name, scale, color, orbit } = planet;
-  const { perihelion, aphelion, inclination } = orbit;
+  const { perihelion, aphelion, inclination, eccentricity } = orbit;
   const { nodes, materials } = useGLTF(`/src/glb/${name}.glb`);
   const meshRef = useRef();
 
   const orbitCoords = [];
   const coordCount = 16384;
+  const rotateZ = -Math.PI / 2;
+  const rotateY = -Math.PI / 2;
+
   for (let index = 0; index < coordCount; index++) {
     const angle = (index / coordCount) * 2 * Math.PI;
     const semiMajorAxis = (perihelion + aphelion) / 2;
-    const semiMinorAxis = Math.sqrt(perihelion * aphelion);
     const radius =
-      (semiMajorAxis * semiMinorAxis) /
-      Math.sqrt(
-        semiMinorAxis * semiMinorAxis * Math.cos(angle) * Math.cos(angle) +
-          semiMajorAxis * semiMajorAxis * Math.sin(angle) * Math.sin(angle)
-      );
-    const x = radius * Math.cos(angle);
-    const y =
+      (semiMajorAxis * (1 - eccentricity * eccentricity)) /
+      (1 + eccentricity * Math.cos(angle));
+
+    const xUnrotated =
       radius * Math.sin(angle) * Math.sin(inclination * (Math.PI / 180));
-    const z =
+    const yUnrotated = radius * Math.cos(angle);
+    const zUnrotated =
       radius * Math.sin(angle) * Math.cos(inclination * (Math.PI / 180));
+
+    const x = xUnrotated * Math.cos(rotateY) - zUnrotated * Math.sin(rotateY);
+    const y =
+      xUnrotated * Math.sin(rotateZ) * Math.sin(rotateY) +
+      yUnrotated * Math.cos(rotateZ) -
+      zUnrotated * Math.sin(rotateZ) * Math.cos(rotateY);
+    const z =
+      xUnrotated * Math.cos(rotateZ) * Math.sin(rotateY) +
+      yUnrotated * Math.sin(rotateZ) +
+      zUnrotated * Math.cos(rotateZ) * Math.cos(rotateY);
+
     orbitCoords.push(new Vector3(x, y, z));
   }
   orbitCoords.push(orbitCoords[0]);
