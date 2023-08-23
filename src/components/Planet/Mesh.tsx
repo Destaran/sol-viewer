@@ -11,7 +11,6 @@ export function Mesh({
 }) {
   const rotation = [0, 0, 0];
   const haveRings = name === "Saturn";
-  console.log(position);
 
   useFrame(({ clock }) => {
     const timer = Math.floor(clock.getElapsedTime() * 2);
