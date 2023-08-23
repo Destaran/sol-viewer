@@ -21,7 +21,7 @@ export function Name({ name, position, camRef, color, meshRef }) {
     nameRef.current.fontSize = 0.03 * distance;
 
     nameRef.current.position.x = meshRef.current.position.x;
-    nameRef.current.position.y = meshRef.current.position.y;
+    nameRef.current.position.y = meshRef.current.position.y + 1;
     nameRef.current.position.z = meshRef.current.position.z;
   });
 
