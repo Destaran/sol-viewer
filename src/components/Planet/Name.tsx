@@ -2,12 +2,13 @@ import { Text } from "@react-three/drei";
 import { Vector3, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-export function Name({ name, position, camRef, color }) {
+export function Name({ name, position, camRef, color, meshRef }) {
   const nameRef = useRef();
+
   const namePos: Vector3 = [
-    position[0] + 0.8,
-    position[1] + 0.8,
-    position[2] + 0.8,
+    position.x + 1.8,
+    position.y + 1.8,
+    position.z + 1.8,
   ];
 
   useFrame(() => {
@@ -18,6 +19,10 @@ export function Name({ name, position, camRef, color }) {
       camRef.current.position
     );
     nameRef.current.fontSize = 0.03 * distance;
+
+    nameRef.current.position.x = meshRef.current.position.x;
+    nameRef.current.position.y = meshRef.current.position.y;
+    nameRef.current.position.z = meshRef.current.position.z;
   });
 
   return (
