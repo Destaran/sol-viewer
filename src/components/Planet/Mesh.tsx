@@ -3,15 +3,16 @@ import { useFrame } from "@react-three/fiber";
 
 export function Mesh({ planet, meshRef, lookAtPlanet, track }) {
   const { name, scale, orbit } = planet;
-  const { perihelion, aphelion, eccentricity, inclination } = orbit;
+  const { perihelion, aphelion, eccentricity, inclination, orbitPeriod } =
+    orbit;
   const { nodes, materials } = useGLTF(`/src/glb/${name}.glb`);
-  const rotation = [0, 0, 0];
   const haveRings = name === "Saturn";
+
   if (track && track === name) {
     lookAtPlanet(meshRef.current.position, scale);
   }
 
-  const orbitTime = 60 * 60 * 24;
+  const orbitTime = 60 / orbitPeriod;
   const semiMajorAxis = (perihelion + aphelion) / 2;
 
   useFrame(({ clock }) => {
