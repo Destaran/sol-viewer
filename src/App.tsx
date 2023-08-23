@@ -107,13 +107,7 @@ export function App() {
         <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
         <Stars count={8000} radius={5000} factor={8} />
         <Ring />
-        <group
-          rotation={[
-            30 * (Math.PI / 180),
-            0 * (Math.PI / 180),
-            0 * (Math.PI / 180),
-          ]}
-        >
+        <group>
           <Sun position={sunPos} scale={69.55} lookAtPlanet={lookAtPlanet} />
           {planets.map((planet, idx) => {
             return (
