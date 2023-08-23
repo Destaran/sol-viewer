@@ -21,5 +21,3 @@ export function Sun(props) {
     </group>
   );
 }
-
-useGLTF.preload("/Sun.glb");
