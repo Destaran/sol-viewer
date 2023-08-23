@@ -5,10 +5,21 @@ import {
   Stars,
   PerspectiveCamera,
   Ring,
+  useGLTF,
 } from "@react-three/drei";
 import { Sun } from "./components/Sun";
 import { useEffect, useRef, useState } from "react";
 import { Planet } from "./components/Planet/Planet";
+
+useGLTF.preload("./src/glb/Sun.glb");
+useGLTF.preload("./src/glb/Mercury.glb");
+useGLTF.preload("./src/glb/Venus.glb");
+useGLTF.preload("./src/glb/Earth.glb");
+useGLTF.preload("./src/glb/Mars.glb");
+useGLTF.preload("./src/glb/Jupiter.glb");
+useGLTF.preload("./src/glb/Saturn.glb");
+useGLTF.preload("./src/glb/Uranus.glb");
+useGLTF.preload("./src/glb/Neptune.glb");
 
 const Container = styled.div`
   display: flex;
@@ -119,7 +130,7 @@ const planets = [
     name: "Mars",
     position: [227.38896, 0, 0],
     scale: 0.0003389,
-    color: "#ff0000",
+    color: "#cd0000",
     orbit: {
       perihelion: 206.65,
       aphelion: 249.261,
