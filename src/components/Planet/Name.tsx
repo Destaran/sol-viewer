@@ -1,27 +1,10 @@
 import { Text } from "@react-three/drei";
-import { Vector3, useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useRef, useState } from "react";
 
-export function Name({
-  name,
-  position,
-  camRef,
-  color,
-  meshRef,
-  scale,
-  lookAtPlanet,
-}) {
+export function Name({ name, camRef, color, meshRef, scale, lookAtPlanet }) {
   const nameRef = useRef();
   const [show, setShow] = useState(false);
-  const namePos: Vector3 = [
-    position.x + 1.8,
-    position.y + 1.8,
-    position.z + 1.8,
-  ];
-
-  // useEffect(() => {
-  //   if
-  // })
 
   useFrame(() => {
     const distance = meshRef.current.position.distanceTo(
@@ -52,7 +35,6 @@ export function Name({
           ref={nameRef}
           anchorX="center"
           anchorY="middle"
-          position={namePos}
           color={color}
           onClick={() => lookAtPlanet(meshRef.current.position, scale)}
         >
