@@ -25,7 +25,7 @@ import { Vector3 } from "three";
 // }
 
 export function Planet({ planet, camRef }: PlanetProps) {
-  const { name, scale, position, color, orbit } = planet;
+  const { name, scale, color, orbit } = planet;
   const { perihelion, aphelion, inclination } = orbit;
   const { nodes, materials } = useGLTF(`/src/glb/${name}.glb`);
   const meshRef = useRef();
