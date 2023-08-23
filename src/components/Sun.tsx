@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
 export function Sun(props) {
-  const { nodes, materials } = useGLTF("/Sun.glb");
+  const { nodes, materials } = useGLTF("./src/glb/Sun.glb");
   const groupRef = useRef();
 
   useFrame(() => {
