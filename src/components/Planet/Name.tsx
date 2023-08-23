@@ -2,7 +2,15 @@ import { Text } from "@react-three/drei";
 import { Vector3, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-export function Name({ name, position, camRef, color, meshRef }) {
+export function Name({
+  name,
+  position,
+  camRef,
+  color,
+  meshRef,
+  scale,
+  lookAtPlanet,
+}) {
   const nameRef = useRef();
 
   const namePos: Vector3 = [
@@ -32,6 +40,7 @@ export function Name({ name, position, camRef, color, meshRef }) {
       anchorY="middle"
       position={namePos}
       color={color}
+      onClick={() => lookAtPlanet(meshRef.current.position, scale)}
     >
       {name}
     </Text>

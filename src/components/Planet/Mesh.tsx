@@ -8,9 +8,14 @@ export function Mesh({
   materials,
   meshRef,
   name,
+  lookAtPlanet,
+  track,
 }) {
   const rotation = [0, 0, 0];
   const haveRings = name === "Saturn";
+  if (track && track === name) {
+    lookAtPlanet(meshRef.current.position, scale);
+  }
 
   useFrame(({ clock }) => {
     const timer = Math.floor(clock.getElapsedTime() * 2);
@@ -21,7 +26,13 @@ export function Mesh({
   });
 
   return (
-    <group dispose={null} ref={meshRef} scale={scale} position={position}>
+    <group
+      dispose={null}
+      ref={meshRef}
+      scale={scale}
+      position={position}
+      onClick={() => lookAtPlanet(meshRef.current.position, scale)}
+    >
       <mesh
         geometry={nodes[name].geometry}
         material={materials[name]}

@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-export function Sun(props) {
+export function Sun({ position, scale, lookAtPlanet }) {
   const { nodes, materials } = useGLTF("./src/glb/Sun.glb");
   const groupRef = useRef();
 
@@ -12,11 +12,17 @@ export function Sun(props) {
   });
 
   return (
-    <group {...props} dispose={null} ref={groupRef}>
+    <group
+      position={position}
+      scale={scale}
+      dispose={null}
+      ref={groupRef}
+      onClick={() => lookAtPlanet(position, scale / 1000)}
+    >
       <mesh
         geometry={nodes.Cube001.geometry}
         material={materials.None}
-        rotation={[Math.PI / 2, 0, 0]}
+        rotation={[0, 0, 0]}
       ></mesh>
     </group>
   );

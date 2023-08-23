@@ -24,7 +24,7 @@ import { Vector3 } from "three";
 //   camRef: undefined;
 // }
 
-export function Planet({ planet, camRef }: PlanetProps) {
+export function Planet({ planet, camRef, lookAtPlanet, track }: PlanetProps) {
   const { name, scale, color, orbit } = planet;
   const { perihelion, aphelion, inclination } = orbit;
   const { nodes, materials } = useGLTF(`/src/glb/${name}.glb`);
@@ -52,7 +52,7 @@ export function Planet({ planet, camRef }: PlanetProps) {
   orbitCoords.push(orbitCoords[0]);
 
   return (
-    <>
+    <group>
       <Ecliptic orbitCoords={orbitCoords} color={color} />
       <Mesh
         scale={scale}
@@ -62,6 +62,8 @@ export function Planet({ planet, camRef }: PlanetProps) {
         materials={materials}
         meshRef={meshRef}
         name={name}
+        lookAtPlanet={lookAtPlanet}
+        track={track}
       />
       <Name
         name={name}
@@ -69,7 +71,9 @@ export function Planet({ planet, camRef }: PlanetProps) {
         camRef={camRef}
         meshRef={meshRef}
         color={color}
+        scale={scale}
+        lookAtPlanet={lookAtPlanet}
       />
-    </>
+    </group>
   );
 }
