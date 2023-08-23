@@ -10,6 +10,9 @@ export function Mesh({
   name,
   lookAtPlanet,
   track,
+  eccentricity: e,
+  semiMajorAxis: a,
+  inclination: i,
 }) {
   const rotation = [0, 0, 0];
   const haveRings = name === "Saturn";
