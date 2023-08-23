@@ -77,7 +77,8 @@ export function App() {
       position.y + scale * 1500,
       position.z + scale * 2500
     );
-    setCamTarget(position);
+    const bodyPos = new Vector3(position.x, position.y, position.z);
+    setCamTarget(bodyPos);
     setCamPos(cameraPos);
     setTrack(null);
   }
