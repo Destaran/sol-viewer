@@ -34,10 +34,10 @@ export function Planet({ planet, camRef, lookAtPlanet, track }: PlanetProps) {
   const coordCount = 16384;
   const rotateZ = -Math.PI / 2;
   const rotateY = -Math.PI / 2;
+  const semiMajorAxis = (perihelion + aphelion) / 2;
 
   for (let index = 0; index < coordCount; index++) {
     const angle = (index / coordCount) * 2 * Math.PI;
-    const semiMajorAxis = (perihelion + aphelion) / 2;
     const radius =
       (semiMajorAxis * (1 - eccentricity * eccentricity)) /
       (1 + eccentricity * Math.cos(angle));
@@ -75,6 +75,10 @@ export function Planet({ planet, camRef, lookAtPlanet, track }: PlanetProps) {
         name={name}
         lookAtPlanet={lookAtPlanet}
         track={track}
+        eccentricity={eccentricity}
+        perihelion={perihelion}
+        aphelion={aphelion}
+        inclination={inclination}
       />
       <Name
         name={name}
