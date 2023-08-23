@@ -1,6 +1,11 @@
 import { Vector3, BufferGeometry } from "three";
+import { Planet } from "../../utils/types";
 
-export function Ecliptic({ planet }) {
+interface EclipticProps {
+  planet: Planet;
+}
+
+export function Ecliptic({ planet }: EclipticProps) {
   const { orbit, color } = planet;
   const { perihelion, aphelion, eccentricity, inclination } = orbit;
   const orbitCoords = [];

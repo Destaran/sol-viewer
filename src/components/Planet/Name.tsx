@@ -1,9 +1,26 @@
 import { Text } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { Vector3, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 
-export function Name({ name, camRef, color, meshRef, scale, lookAtPlanet }) {
+interface NameProps {
+  name: string;
+  color: string;
+  scale: number;
+  camRef: React.MutableRefObject<undefined>;
+  meshRef: React.MutableRefObject<undefined>;
+  lookAtPlanet: (position: Vector3, scale: number) => void;
+}
+
+export function Name({
+  name,
+  color,
+  scale,
+  camRef,
+  meshRef,
+  lookAtPlanet,
+}: NameProps) {
   const nameRef = useRef();
+
   const [show, setShow] = useState(false);
 
   useFrame(() => {

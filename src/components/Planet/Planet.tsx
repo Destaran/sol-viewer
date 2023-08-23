@@ -2,8 +2,17 @@ import { useRef } from "react";
 import { Name } from "./Name";
 import { Ecliptic } from "./Ecliptic";
 import { Mesh } from "./Mesh";
+import { Planet as PlanetType } from "../../utils/types";
+import { Vector3 } from "@react-three/fiber";
 
-export function Planet({ planet, camRef, lookAtPlanet, track }) {
+interface PlanetProps {
+  planet: PlanetType;
+  camRef: React.MutableRefObject<undefined>;
+  lookAtPlanet: (position: Vector3, scale: number) => void;
+  track: string | null;
+}
+
+export function Planet({ planet, camRef, lookAtPlanet, track }: PlanetProps) {
   const { name, scale, color } = planet;
   const meshRef = useRef();
 
