@@ -17,7 +17,7 @@ export const planets = [
   {
     name: "Venus",
     scale: 0.0006052,
-    color: "#f7ff86",
+    color: "#f7ffd6",
     orbit: {
       perihelion: 107.48,
       aphelion: 108.941,
@@ -77,7 +77,7 @@ export const planets = [
   {
     name: "Saturn",
     scale: 0.0058232,
-    color: "#feffca",
+    color: "#bebf8a",
     orbit: {
       perihelion: 1357.554,
       aphelion: 1506.527,

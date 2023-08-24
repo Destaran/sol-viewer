@@ -134,7 +134,9 @@ export function App() {
       </Canvas>
       <HudContainer>
         <ButtonContainer>
-          <Button onClick={lookAtSun}>Sun</Button>
+          <Button onClick={lookAtSun} $fontcolor="yellow">
+            Sun
+          </Button>
           {planets.map((planet, idx) => {
             return (
               <Button
