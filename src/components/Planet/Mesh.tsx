@@ -54,12 +54,7 @@ export function Mesh({ planet, meshRef, lookAtPlanet, track }: MeshProps) {
   });
 
   return (
-    <group
-      dispose={null}
-      ref={meshRef}
-      scale={scale}
-      onClick={() => lookAtPlanet(meshRef.current.position, scale)}
-    >
+    <group dispose={null} ref={meshRef} scale={scale}>
       <mesh geometry={nodes[name].geometry} material={materials[name]} />
       {haveRings ? (
         <>
