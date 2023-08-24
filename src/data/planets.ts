@@ -1,4 +1,6 @@
-export const planets = [
+import { Planet } from "../utils/types";
+
+export const planets: Planet[] = [
   {
     name: "Mercury",
     scale: 0.0002439,
