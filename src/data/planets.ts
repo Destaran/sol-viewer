@@ -10,6 +10,9 @@ export const planets = [
       eccentricity: 0.2056,
       orbitPeriod: 12 / 3,
     },
+    rotation: {
+      period: (1 / 365) * 58.6462,
+    },
   },
   {
     name: "Venus",
@@ -21,6 +24,9 @@ export const planets = [
       inclination: 3.395,
       eccentricity: 0.0068,
       orbitPeriod: 12 / 7,
+    },
+    rotation: {
+      period: (-1 / 365) * 243.0226,
     },
   },
   {
@@ -34,6 +40,9 @@ export const planets = [
       eccentricity: 0.0167,
       orbitPeriod: 12 / 12,
     },
+    rotation: {
+      period: 1 / 365,
+    },
   },
   {
     name: "Mars",
@@ -45,6 +54,9 @@ export const planets = [
       inclination: 0,
       eccentricity: 0.0935,
       orbitPeriod: 12 / 23,
+    },
+    rotation: {
+      period: (1 / 365) * 1.02595675,
     },
   },
   {
@@ -58,6 +70,9 @@ export const planets = [
       eccentricity: 0.0487,
       orbitPeriod: 12 / 142,
     },
+    rotation: {
+      period: (1 / 365) * 0.41354,
+    },
   },
   {
     name: "Saturn",
@@ -69,6 +84,9 @@ export const planets = [
       inclination: 2.486,
       eccentricity: 0.052,
       orbitPeriod: 12 / 354,
+    },
+    rotation: {
+      period: (1 / 365) * 0.44002,
     },
   },
   {
@@ -82,6 +100,9 @@ export const planets = [
       eccentricity: 0.0469,
       orbitPeriod: 12 / 1009,
     },
+    rotation: {
+      period: (-1 / 365) * 0.71833,
+    },
   },
   {
     name: "Neptune",
@@ -93,6 +114,9 @@ export const planets = [
       inclination: 1.77,
       eccentricity: 0.0097,
       orbitPeriod: 12 / 1979,
+    },
+    rotation: {
+      period: (1 / 365) * 0.67125,
     },
   },
 ];
