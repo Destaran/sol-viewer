@@ -6,9 +6,14 @@ export interface PlanetOrbitData {
   orbitPeriod: number;
 }
 
+export interface PlanetRotationData {
+  period: number;
+}
+
 export interface Planet {
   name: string;
   scale: number;
   color: string;
   orbit: PlanetOrbitData;
+  rotation: PlanetRotationData;
 }
