@@ -26,6 +26,12 @@ export function Name({
   const maxDistanceToShow = scale * 30000;
   const minOpacity = 0.0;
 
+  function handleClick() {
+    if (visible) {
+      lookAtPlanet(meshRef.current.position, scale);
+    }
+  }
+
   useFrame(() => {
     const distance = meshRef.current.position.distanceTo(
       camRef.current.position
@@ -59,7 +65,7 @@ export function Name({
       anchorY="middle"
       ref={nameRef}
       color={color}
-      onClick={() => lookAtPlanet(meshRef.current.position, scale)}
+      onClick={handleClick}
     >
       {name}
     </Text>
