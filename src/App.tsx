@@ -65,15 +65,15 @@ const Button = styled.div`
 
   &:active {
     color: #6f6f6f;
-    transition: all 100ms;
+    transition: all 50ms;
     transform: scale(0.9) translateY(-5px);
   }
 `;
 
 export function App() {
+  const camRef = useRef();
   const sunPos = new Vector3(0, 0, 0);
   const defCamPos = new Vector3(0, 100, 5400);
-  const camRef = useRef();
   const [track, setTrack] = useState<string | null>(null);
   const [camTarget, setCamTarget] = useState(sunPos);
   const [camPos, setCamPos] = useState(defCamPos);
