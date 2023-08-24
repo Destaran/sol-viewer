@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import "./fonts/VoyagerLight.otf";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -47,20 +48,23 @@ const ButtonContainer = styled.div`
 
 const Button = styled.div`
   color: #1864af;
-  font-family: monospace;
+  font-family: light;
   font-size: 18px;
   margin: 1px 15px 1px 1px;
   cursor: pointer;
-  transition: all 1000ms;
+  transition: all 1500ms;
   padding: 5px;
 
   &:hover {
     color: #7bbdff;
+    transition: all 500ms;
+    transform: translateY(-5px);
   }
 
   &:active {
     color: #ffffff;
     transition: all 100ms;
+    transform: scale(0.9) translateY(-5px);
   }
 `;
 

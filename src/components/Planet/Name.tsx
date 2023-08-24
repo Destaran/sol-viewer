@@ -1,6 +1,6 @@
 import { Text } from "@react-three/drei";
 import { Vector3, useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface NameProps {
   name: string;
@@ -11,6 +11,8 @@ interface NameProps {
   lookAtPlanet: (position: Vector3, scale: number) => void;
 }
 
+const fontUrl = "src/fonts/VoyagerLight.otf";
+
 export function Name({
   name,
   color,
@@ -20,7 +22,7 @@ export function Name({
   lookAtPlanet,
 }: NameProps) {
   const nameRef = useRef();
-  const [show, setShow] = useState(true);
+  const [visible, setVisible] = useState(true);
   const maxDistanceToShow = scale * 30000;
   const minOpacity = 0.0;
 
@@ -31,8 +33,13 @@ export function Name({
 
     const newOpacity = 1 - maxDistanceToShow / distance;
     nameRef.current.material.opacity = Math.max(newOpacity, minOpacity);
+    if (newOpacity < 0 && visible) {
+      setVisible(false);
+    } else if (newOpacity > 0 && !visible) {
+      setVisible(true);
+    }
 
-    if (show) {
+    if (nameRef.current.material.opacity > 0) {
       nameRef.current.scale.set(0.03 * distance, 0.03 * distance, 1);
       nameRef.current.rotation.x = camRef.current.rotation.x;
       nameRef.current.rotation.y = camRef.current.rotation.y;
@@ -45,12 +52,14 @@ export function Name({
 
   return (
     <Text
-      ref={nameRef}
+      visible={visible}
+      font={fontUrl}
+      fontSize={1}
       anchorX="center"
       anchorY="middle"
+      ref={nameRef}
       color={color}
       onClick={() => lookAtPlanet(meshRef.current.position, scale)}
-      fontSize={1}
     >
       {name}
     </Text>

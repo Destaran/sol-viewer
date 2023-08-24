@@ -1,3 +1,9 @@
 body {
   margin: 0 auto;
 }
+
+@font-face {
+  font-family: "Light";
+  src: local("VoyagerLight"),
+    url("./fonts/VoyagerLight.otf") format("opentype");
+}
