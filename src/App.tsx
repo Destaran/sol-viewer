@@ -37,17 +37,19 @@ const Container = styled.div`
 const HudContainer = styled.div`
   position: absolute;
   bottom: 25px;
-  left: 25px;
   user-select: none;
+  width: 100%;
+  background-color: rgba(0, 125, 255, 0.15);
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
+  justify-content: center;
   user-select: none;
 `;
 
 const Button = styled.div`
-  color: #1864af;
+  color: ${({ $fontcolor }) => $fontcolor};
   font-family: light;
   font-size: 18px;
   margin: 1px 15px 1px 1px;
@@ -56,13 +58,13 @@ const Button = styled.div`
   padding: 5px;
 
   &:hover {
-    color: #7bbdff;
+    color: #ffffff;
     transition: all 500ms;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 
   &:active {
-    color: #ffffff;
+    color: #6f6f6f;
     transition: all 100ms;
     transform: scale(0.9) translateY(-5px);
   }
@@ -135,11 +137,15 @@ export function App() {
           <Button onClick={lookAtSun}>Sun</Button>
           {planets.map((planet, idx) => {
             return (
-              <Button onClick={() => handleTrack(planet.name)} key={idx}>
+              <Button
+                onClick={() => handleTrack(planet.name)}
+                key={idx}
+                $fontcolor={planet.color}
+              >
                 {planet.name}
               </Button>
             );
-          })}{" "}
+          })}
         </ButtonContainer>
       </HudContainer>
     </Container>
