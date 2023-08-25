@@ -2,9 +2,14 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-export function Sun({ position, scale, lookAtPlanet }) {
+export function Sun({ position, scale, lookAtPlanet, track }) {
   const { nodes, materials } = useGLTF("./src/glb/Sun.glb");
   const groupRef = useRef();
+  const name = "Sun";
+
+  if (track === name) {
+    lookAtPlanet(groupRef.current.position, scale / 1000);
+  }
 
   useFrame(() => {
     groupRef.current.rotation.y += 0.0003;

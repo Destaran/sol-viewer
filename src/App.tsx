@@ -73,7 +73,7 @@ const Button = styled.div`
 export function App() {
   const camRef = useRef();
   const sunPos = new Vector3(0, 0, 0);
-  const defCamPos = new Vector3(0, 100, 5400);
+  const defCamPos = new Vector3(0, 500, 540);
   const [track, setTrack] = useState<string | null>(null);
   const [camTarget, setCamTarget] = useState(sunPos);
   const [camPos, setCamPos] = useState(defCamPos);
@@ -90,12 +90,6 @@ export function App() {
     setTrack(null);
   }
 
-  function lookAtSun() {
-    setCamTarget(sunPos);
-    setCamPos(defCamPos);
-    setTrack(null);
-  }
-
   function handleTrack(name: string) {
     setTrack(name);
   }
@@ -106,17 +100,22 @@ export function App() {
         <PerspectiveCamera
           makeDefault
           position={camPos}
-          far={100000}
+          far={1000000}
           near={0.001}
           ref={camRef}
         />
         <OrbitControls target={camTarget} />
         <ambientLight intensity={0.02} />
         <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
-        <Stars count={8000} radius={5000} factor={8} />
+        <Stars count={8000} radius={500000} factor={8} />
         <Ring />
         <group>
-          <Sun position={sunPos} scale={69.55} lookAtPlanet={lookAtPlanet} />
+          <Sun
+            position={sunPos}
+            scale={69.55}
+            lookAtPlanet={lookAtPlanet}
+            track={track}
+          />
           {planets.map((planet, idx) => {
             return (
               <Planet
@@ -134,7 +133,7 @@ export function App() {
       </Canvas>
       <HudContainer>
         <ButtonContainer>
-          <Button onClick={lookAtSun} $fontcolor="yellow">
+          <Button onClick={() => handleTrack("Sun")} $fontcolor="yellow">
             Sun
           </Button>
           {planets.map((planet, idx) => {
