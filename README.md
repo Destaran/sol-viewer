@@ -1,28 +1,20 @@
-# React + TypeScript + Vite
+# Sol Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-Commit test
+A Three Fiber project that let's you look around in our solar system.
+All models are downloaded from https://solarsystem.nasa.gov/
+All data for calculations is from https://nssdc.gsfc.nasa.gov/planetary/factsheet/
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React running with Three Fiber extended with Drei utilizing Three.js 3D canvas
+- Roughly accurate scale, orbital trajectories and periods
+- Name and orbit trajectory indicators
+- Camera controls and jump to planet functions
 
-## Expanding the ESLint configuration
+## Roadmap
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Roughly accurate rotational angles and rotational periods
+- Quick summary about nearby celestial body
+- Fly to camera controls instead of replacing camera
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![](https://i.imgur.com/5E5ZiZp.png)
