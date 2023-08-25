@@ -1,7 +1,7 @@
 # Sol Viewer
 
-A Three Fiber project that let's you look around in our solar system.
-All models are downloaded from https://solarsystem.nasa.gov/
+A Three Fiber project that let's you look around in our solar system.  
+All models are downloaded from https://solarsystem.nasa.gov/  
 All data for calculations is from https://nssdc.gsfc.nasa.gov/planetary/factsheet/
 
 ![](https://i.imgur.com/5E5ZiZp.png)
@@ -13,7 +13,7 @@ All data for calculations is from https://nssdc.gsfc.nasa.gov/planetary/factshee
 - Name and orbit trajectory indicators
 - Camera controls and jump to planet functions
 
-![](https://i.imgur.com/cP5EfYw.png)
+![](https://i.imgur.com/yGfCBlZ.png)
 
 ## Roadmap
 
@@ -21,6 +21,4 @@ All data for calculations is from https://nssdc.gsfc.nasa.gov/planetary/factshee
 - Quick summary about nearby celestial body
 - Fly to camera controls instead of replacing camera
 
-![](https://i.imgur.com/QMzLXtv.png)
-
-![](https://i.imgur.com/yGfCBlZ.png)
+![](https://i.imgur.com/Xp6cKK5.png)
