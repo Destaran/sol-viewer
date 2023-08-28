@@ -1,6 +1,6 @@
 import { Text } from "@react-three/drei";
 import { Vector3, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface NameProps {
   name: string;
@@ -25,6 +25,12 @@ export function Name({
   const [visible, setVisible] = useState(true);
   const maxDistanceToShow = scale * 30000;
   const minOpacity = 0.0;
+
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered && visible ? "pointer" : "auto";
+  }, [hovered]);
 
   function handleClick() {
     if (visible) {
@@ -66,6 +72,8 @@ export function Name({
       ref={nameRef}
       color={color}
       onClick={handleClick}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
     >
       {name}
     </Text>
