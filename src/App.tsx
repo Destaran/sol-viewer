@@ -104,7 +104,7 @@ export function App() {
           near={0.001}
           ref={camRef}
         />
-        <OrbitControls target={camTarget} />
+        <OrbitControls target={camTarget} maxDistance={10000} />
         <ambientLight intensity={0.02} />
         <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
         <Stars count={8000} radius={500000} factor={8} />
