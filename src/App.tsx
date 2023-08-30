@@ -3,7 +3,6 @@ import "./fonts/VoyagerLight.otf";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
-  Stars,
   PerspectiveCamera,
   Ring,
   useGLTF,
@@ -15,7 +14,6 @@ import { Planet } from "./components/Planet/Planet";
 import { Vector3 } from "three";
 import { planets } from "./data/planets";
 import { Vector3 as Vector3Type } from "@react-three/fiber";
-import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
 useGLTF.preload("./src/glb/Sun.glb");
 useGLTF.preload("./src/glb/Mercury.glb");
 useGLTF.preload("./src/glb/Venus.glb");
@@ -110,14 +108,6 @@ export function App() {
         <ambientLight intensity={0.02} />
         <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
         <Environment files="./hdr.hdr" background blur={0.01} />
-        <EffectComposer>
-          <Bloom
-            luminanceThreshold={0.1}
-            luminanceSmoothing={0.9}
-            height={3000}
-          />
-        </EffectComposer>
-        {/* <Stars count={8000} radius={500000} factor={8} /> */}
         <Ring />
         <group>
           <Sun
