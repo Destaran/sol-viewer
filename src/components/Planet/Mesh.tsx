@@ -1,10 +1,11 @@
 import { useGLTF } from "@react-three/drei";
-import { Vector3, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Planet } from "../../utils/types";
+import { Group, Vector3 } from "three";
 
 interface MeshProps {
   planet: Planet;
-  meshRef: React.MutableRefObject<undefined>;
+  meshRef: React.MutableRefObject<Group>;
   lookAtPlanet: (position: Vector3, scale: number) => void;
   track: string | null;
 }

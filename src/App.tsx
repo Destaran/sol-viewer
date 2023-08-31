@@ -13,7 +13,6 @@ import { useRef, useState } from "react";
 import { Planet } from "./components/Planet/Planet";
 import { Vector3 } from "three";
 import { planets } from "./data/planets";
-import { Vector3 as Vector3Type } from "@react-three/fiber";
 useGLTF.preload("./src/glb/Sun.glb");
 useGLTF.preload("./src/glb/Mercury.glb");
 useGLTF.preload("./src/glb/Venus.glb");
@@ -48,7 +47,7 @@ const ButtonContainer = styled.div`
   user-select: none;
 `;
 
-const Button = styled.div`
+const Button = styled.div<{ $fontcolor: string }>`
   color: ${({ $fontcolor }) => $fontcolor};
   font-family: light;
   font-size: 18px;
@@ -78,7 +77,7 @@ export function App() {
   const [camTarget, setCamTarget] = useState(sunPos);
   const [camPos, setCamPos] = useState(defCamPos);
 
-  function lookAtPlanet(position: Vector3Type, scale: number) {
+  function lookAtPlanet(position: Vector3, scale: number) {
     const cameraPos = new Vector3(
       position.x + scale * -2500,
       position.y + scale * 1500,

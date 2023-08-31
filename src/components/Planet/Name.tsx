@@ -1,13 +1,14 @@
 import { Text } from "@react-three/drei";
 import { Vector3, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
+import { Camera, Group } from "three";
 
 interface NameProps {
   name: string;
   color: string;
   scale: number;
-  camRef: React.MutableRefObject<undefined>;
-  meshRef: React.MutableRefObject<undefined>;
+  camRef: React.MutableRefObject<Camera>;
+  meshRef: React.MutableRefObject<Group>;
   lookAtPlanet: (position: Vector3, scale: number) => void;
 }
 
@@ -21,7 +22,7 @@ export function Name({
   meshRef,
   lookAtPlanet,
 }: NameProps) {
-  const nameRef = useRef();
+  const nameRef: React.MutableRefObject<> = useRef();
   const [visible, setVisible] = useState(true);
   const maxDistanceToShow = scale * 30000;
   const minOpacity = 0.0;

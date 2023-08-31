@@ -3,11 +3,11 @@ import { Name } from "./Name";
 import { Ecliptic } from "./Ecliptic";
 import { Mesh } from "./Mesh";
 import { Planet as PlanetType } from "../../utils/types";
-import { Vector3 } from "@react-three/fiber";
+import { Camera, Vector3 } from "three";
 
 interface PlanetProps {
   planet: PlanetType;
-  camRef: React.MutableRefObject<undefined>;
+  camRef: React.MutableRefObject<Camera>;
   lookAtPlanet: (position: Vector3, scale: number) => void;
   track: string | null;
 }
