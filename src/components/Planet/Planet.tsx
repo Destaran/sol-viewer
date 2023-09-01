@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Name } from "./Name";
 import { Ecliptic } from "./Ecliptic";
-import { PlanetMesh } from "./Mesh";
+import { PlanetMesh } from "./PlanetMesh";
 import { Planet as PlanetType } from "../../utils/types";
 import { Camera, Group, Vector3 } from "three";
 
