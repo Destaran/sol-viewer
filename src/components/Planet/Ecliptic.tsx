@@ -1,5 +1,6 @@
-import { Vector3, BufferGeometry } from "three";
+import { Vector3 } from "three";
 import { Planet } from "../../utils/types";
+import { Line } from "@react-three/drei";
 
 interface EclipticProps {
   planet: Planet;
@@ -9,7 +10,7 @@ export function Ecliptic({ planet }: EclipticProps) {
   const { orbit, color } = planet;
   const { perihelion, aphelion, eccentricity, inclination } = orbit;
   const orbitCoords = [];
-  const coordCount = 16384;
+  const coordCount = 1024;
   const rotate = -Math.PI / 2;
   const semiMajorAxis = (perihelion + aphelion) / 2;
 
@@ -38,11 +39,6 @@ export function Ecliptic({ planet }: EclipticProps) {
     orbitCoords.push(new Vector3(x, y, z));
   }
   orbitCoords.push(orbitCoords[0]);
-  const lineGeometry = new BufferGeometry().setFromPoints(orbitCoords);
 
-  return (
-    <line geometry={lineGeometry}>
-      <lineBasicMaterial attach="material" color={color} linewidth={100000} />
-    </line>
-  );
+  return <Line points={orbitCoords} color={color} linewidth={2} />;
 }
