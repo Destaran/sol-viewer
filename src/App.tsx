@@ -11,17 +11,17 @@ import {
 import { Sun } from "./components/Sun";
 import { useRef, useState } from "react";
 import { Planet } from "./components/Planet/Planet";
-import { Vector3 } from "three";
+import { Camera, Vector3 } from "three";
 import { planets } from "./data/planets";
-useGLTF.preload("./src/glb/Sun.glb");
-useGLTF.preload("./src/glb/Mercury.glb");
-useGLTF.preload("./src/glb/Venus.glb");
-useGLTF.preload("./src/glb/Earth.glb");
-useGLTF.preload("./src/glb/Mars.glb");
-useGLTF.preload("./src/glb/Jupiter.glb");
-useGLTF.preload("./src/glb/Saturn.glb");
-useGLTF.preload("./src/glb/Uranus.glb");
-useGLTF.preload("./src/glb/Neptune.glb");
+useGLTF.preload("./glb/Sun.glb");
+useGLTF.preload("./glb/Mercury.glb");
+useGLTF.preload("./glb/Venus.glb");
+useGLTF.preload("./glb/Earth.glb");
+useGLTF.preload("./glb/Mars.glb");
+useGLTF.preload("./glb/Jupiter.glb");
+useGLTF.preload("./glb/Saturn.glb");
+useGLTF.preload("./glb/Uranus.glb");
+useGLTF.preload("./glb/Neptune.glb");
 
 const Container = styled.div`
   display: flex;
@@ -70,7 +70,7 @@ const Button = styled.div<{ $fontcolor: string }>`
 `;
 
 export function App() {
-  const camRef = useRef();
+  const camRef = useRef<Camera>(null);
   const sunPos = new Vector3(0, 0, 0);
   const defCamPos = new Vector3(0, 500, 540);
   const [track, setTrack] = useState<string | null>(null);
