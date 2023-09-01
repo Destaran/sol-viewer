@@ -1,29 +1,39 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Planet } from "../../utils/types";
-import { Group, Vector3 } from "three";
+import { Group, Mesh, Vector3 } from "three";
 
 interface MeshProps {
   planet: Planet;
-  meshRef: React.MutableRefObject<Group>;
+  meshRef: React.RefObject<Group>;
   lookAtPlanet: (position: Vector3, scale: number) => void;
   track: string | null;
 }
 
-export function Mesh({ planet, meshRef, lookAtPlanet, track }: MeshProps) {
+export function PlanetMesh({
+  planet,
+  meshRef,
+  lookAtPlanet,
+  track,
+}: MeshProps) {
   const { name, scale, orbit } = planet;
   const { perihelion, aphelion, eccentricity, inclination, orbitPeriod } =
     orbit;
-  const { nodes, materials } = useGLTF(`/src/glb/${name}.glb`);
-  const haveRings = name === "Saturn";
+  const gltf = useGLTF(`/glb/${name}.glb`);
+  const mesh = gltf.scene.getObjectByName(name) as Mesh;
 
-  if (track === name) {
+  // const haveRings = name === "Saturn";
+
+  if (track === name && meshRef.current) {
     lookAtPlanet(meshRef.current.position, scale);
   }
 
   const semiMajorAxis = (perihelion + aphelion) / 2;
 
   useFrame(({ clock }) => {
+    if (!meshRef.current) {
+      return;
+    }
     meshRef.current.rotation.y += 0.003;
     const time = -clock.getElapsedTime() / 60 / 60 / 24 + 12512521;
     const rotate = -Math.PI / 2;
@@ -55,8 +65,8 @@ export function Mesh({ planet, meshRef, lookAtPlanet, track }: MeshProps) {
 
   return (
     <group dispose={null} ref={meshRef} scale={scale}>
-      <mesh geometry={nodes[name].geometry} material={materials[name]} />
-      {haveRings ? (
+      <mesh geometry={mesh.geometry} material={mesh.material} />
+      {/* {haveRings ? (
         <>
           <mesh
             castShadow
@@ -71,7 +81,7 @@ export function Mesh({ planet, meshRef, lookAtPlanet, track }: MeshProps) {
             material={materials.SaturnRings}
           />
         </>
-      ) : null}
+      ) : null} */}
     </group>
   );
 }
