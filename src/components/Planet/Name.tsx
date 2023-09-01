@@ -1,14 +1,14 @@
 import { Text } from "@react-three/drei";
-import { Vector3, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import { Camera, Group } from "three";
+import { Camera, Group, Mesh, Vector3 } from "three";
 
 interface NameProps {
   name: string;
   color: string;
   scale: number;
-  camRef: React.MutableRefObject<Camera>;
-  meshRef: React.MutableRefObject<Group>;
+  camRef: React.RefObject<Camera>;
+  meshRef: React.RefObject<Group>;
   lookAtPlanet: (position: Vector3, scale: number) => void;
 }
 
@@ -22,7 +22,7 @@ export function Name({
   meshRef,
   lookAtPlanet,
 }: NameProps) {
-  const nameRef: React.MutableRefObject<> = useRef();
+  const nameRef = useRef<Mesh>();
   const [visible, setVisible] = useState(true);
   const maxDistanceToShow = scale * 30000;
   const minOpacity = 0.0;
@@ -34,23 +34,39 @@ export function Name({
   }, [hovered]);
 
   function handleClick() {
+    if (!meshRef.current) {
+      return;
+    }
     if (visible) {
       lookAtPlanet(meshRef.current.position, scale);
     }
   }
 
   useFrame(() => {
+    if (!nameRef.current) {
+      return;
+    }
+    if (!meshRef.current) {
+      return;
+    }
+    if (!camRef.current) {
+      return;
+    }
     const distance = meshRef.current.position.distanceTo(
       camRef.current.position
     );
 
     const newOpacity = 1 - maxDistanceToShow / distance;
-    nameRef.current.material.opacity = Math.max(newOpacity, minOpacity);
     if (newOpacity < 0 && visible) {
       setVisible(false);
     } else if (newOpacity > 0 && !visible) {
       setVisible(true);
     }
+
+    if (Array.isArray(nameRef.current.material)) {
+      throw new Error("Material is an array!");
+    }
+    nameRef.current.material.opacity = Math.max(newOpacity, minOpacity);
 
     if (nameRef.current.material.opacity > 0) {
       nameRef.current.scale.set(0.03 * distance, 0.03 * distance, 1);
