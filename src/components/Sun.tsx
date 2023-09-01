@@ -1,17 +1,29 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
+import { Group, Mesh, Vector3 } from "three";
 
-export function Sun({ position, scale, lookAtPlanet, track }) {
-  const { nodes, materials } = useGLTF("./src/glb/Sun.glb");
-  const groupRef = useRef();
+interface Props {
+  position: Vector3;
+  scale: number;
+  lookAtPlanet: (position: Vector3, scale: number) => void;
+  track: string | null;
+}
+
+export function Sun({ position, scale, lookAtPlanet, track }: Props) {
+  const groupRef = useRef<Group>(null);
   const name = "Sun";
+  const gltf = useGLTF(`/glb/${name}.glb`);
+  const mesh = gltf.scene.getObjectByName(name) as Mesh;
 
-  if (track === name) {
+  if (track === name && groupRef.current) {
     lookAtPlanet(groupRef.current.position, scale / 1000);
   }
 
   useFrame(() => {
+    if (!groupRef.current) {
+      return;
+    }
     groupRef.current.rotation.y += 0.0003;
     groupRef.current.rotation.z += 0.0002;
   });
@@ -25,8 +37,8 @@ export function Sun({ position, scale, lookAtPlanet, track }) {
       onClick={() => lookAtPlanet(position, scale / 1000)}
     >
       <mesh
-        geometry={nodes.Cube001.geometry}
-        material={materials.None}
+        geometry={mesh.geometry}
+        material={mesh.material}
         rotation={[0, 0, 0]}
       ></mesh>
     </group>
