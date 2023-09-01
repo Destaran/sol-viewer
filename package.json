@@ -5,7 +5,7 @@
   "homepage": "https://destaran.github.io/sol-viewer",
   "type": "module",
   "scripts": {
-    "predeploy": "yarn run build",
+    "predeploy": "tsc && yarn run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite --open",
     "build": "vite build",
