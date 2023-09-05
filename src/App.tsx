@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import "./fonts/VoyagerLight.otf";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -7,9 +6,11 @@ import {
   Ring,
   useGLTF,
   Environment,
+  Html,
+  useProgress,
 } from "@react-three/drei";
 import { Sun } from "./components/Sun";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { Planet } from "./components/Planet/Planet";
 import { Camera, Vector3 } from "three";
 import { planets } from "./data/planets";
@@ -69,6 +70,15 @@ const Button = styled.div<{ $fontcolor: string }>`
   }
 `;
 
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center style={{ color: "red" }}>
+      {progress} % loaded
+    </Html>
+  );
+}
+
 export function App() {
   const camRef = useRef<Camera>(null);
   const sunPos = new Vector3(0, 0, 0);
@@ -96,39 +106,41 @@ export function App() {
   return (
     <Container>
       <Canvas>
-        <PerspectiveCamera
-          makeDefault
-          position={camPos}
-          far={1000000}
-          near={0.001}
-          ref={camRef}
-        />
-        <OrbitControls target={camTarget} maxDistance={10000} />
-        <ambientLight intensity={0.02} />
-        <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
-        <Environment files="./hdr.hdr" background blur={0.01} />
-        <Ring />
-        <group>
-          <Sun
-            position={sunPos}
-            scale={6.955}
-            lookAtPlanet={lookAtPlanet}
-            track={track}
+        <Suspense fallback={<Loader />}>
+          <PerspectiveCamera
+            makeDefault
+            position={camPos}
+            far={1000000}
+            near={0.001}
+            ref={camRef}
           />
-          {planets.map((planet, idx) => {
-            return (
-              <Planet
-                key={idx}
-                planet={planet}
-                camRef={camRef}
-                lookAtPlanet={lookAtPlanet}
-                track={track}
-              />
-            );
-          })}
-        </group>
+          <OrbitControls target={camTarget} maxDistance={10000} />
+          <ambientLight intensity={0.02} />
+          <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
+          <Environment files="./hdr.hdr" background blur={0.01} />
+          <Ring />
+          <group>
+            <Sun
+              position={sunPos}
+              scale={6.955}
+              lookAtPlanet={lookAtPlanet}
+              track={track}
+            />
+            {planets.map((planet, idx) => {
+              return (
+                <Planet
+                  key={idx}
+                  planet={planet}
+                  camRef={camRef}
+                  lookAtPlanet={lookAtPlanet}
+                  track={track}
+                />
+              );
+            })}
+          </group>
 
-        {/* <Moon position={[149, 0, 0]} scale={0.000174} /> */}
+          {/* <Moon position={[149, 0, 0]} scale={0.000174} /> */}
+        </Suspense>
       </Canvas>
       <HudContainer>
         <ButtonContainer>
