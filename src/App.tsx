@@ -106,7 +106,7 @@ export function App() {
         <OrbitControls target={camTarget} maxDistance={10000} />
         <ambientLight intensity={0.02} />
         <pointLight position={[0, 0, 0]} intensity={2.5} castShadow />
-        <Environment files="./public/hdr.hdr" background blur={0.01} />
+        <Environment files="./hdr.hdr" background blur={0.01} />
         <Ring />
         <group>
           <Sun
