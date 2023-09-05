@@ -2,7 +2,7 @@
 
 ## A Three Fiber project that let's you look around in our solar system.
 
-Take a look here!
+### Take a look at the demo [here](https://sol-viewer.vercel.app/)!
 
 - All models are downloaded from https://solarsystem.nasa.gov/
 - All data for calculations is from https://nssdc.gsfc.nasa.gov/planetary/factsheet/
