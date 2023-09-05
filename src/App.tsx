@@ -6,14 +6,13 @@ import {
   Ring,
   useGLTF,
   Environment,
-  Html,
-  useProgress,
 } from "@react-three/drei";
 import { Sun } from "./components/Sun";
 import { Suspense, useRef, useState } from "react";
 import { Planet } from "./components/Planet/Planet";
 import { Camera, Vector3 } from "three";
 import { planets } from "./data/planets";
+import { Loader } from "./components/Loader/Loader.component";
 useGLTF.preload("./glb/Sun.glb");
 useGLTF.preload("./glb/Mercury.glb");
 useGLTF.preload("./glb/Venus.glb");
@@ -27,7 +26,7 @@ useGLTF.preload("./glb/Neptune.glb");
 const Container = styled.div`
   display: flex;
   position: relative;
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   canvas {
     background-color: black;
@@ -69,15 +68,6 @@ const Button = styled.div<{ $fontcolor: string }>`
     transform: scale(0.9) translateY(-5px);
   }
 `;
-
-function Loader() {
-  const { progress } = useProgress();
-  return (
-    <Html center style={{ color: "red" }}>
-      {progress} % loaded
-    </Html>
-  );
-}
 
 export function App() {
   const camRef = useRef<Camera>(null);
