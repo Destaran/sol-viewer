@@ -2,6 +2,7 @@ import { Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { Camera, Group, Mesh, Vector3 } from "three";
+import Voyager from "../../fonts/VoyagerLight.otf";
 
 interface NameProps {
   name: string;
@@ -11,8 +12,6 @@ interface NameProps {
   meshRef: React.RefObject<Group>;
   lookAtPlanet: (position: Vector3, scale: number) => void;
 }
-
-const fontUrl = "src/fonts/VoyagerLight.otf";
 
 export function Name({
   name,
@@ -82,7 +81,7 @@ export function Name({
   return (
     <Text
       visible={visible}
-      font={fontUrl}
+      font={Voyager}
       fontSize={1}
       anchorX="center"
       anchorY="middle"
